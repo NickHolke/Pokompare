@@ -3,7 +3,7 @@ import { pokemon } from './pokemon-list';
 import Fuse from 'fuse.js';
 import React, { useState } from 'react';
 
-function SearchBar({ getPokemon }) {
+function SearchBar({ getPokemon, detailId }) {
   const [query, updateQuery] = useState('');
   const [hasFocus, updateHasFocus] = useState(false);
   const [results, updateResults] = useState([]);
@@ -17,7 +17,7 @@ function SearchBar({ getPokemon }) {
   };
 
   const requestPokemon = item => {
-    getPokemon(item.url);
+    getPokemon(item.url, detailId);
     updateQuery(item.name);
     updateHasFocus(false);
   };
