@@ -11,7 +11,14 @@ function App() {
       .get(url)
       .then(res => {
         updatePokemon(prevPokemon => {
-          return { ...prevPokemon, [detailId]: res.data };
+          const rawPokemon = res.data;
+          rawPokemon['imgUrl'] =
+            rawPokemon['sprites']['other']['official-artwork']['front_default'];
+          rawPokemon['stats'] = rawPokemon['stats'].map(statObj => {
+            statObj['name'] = statObj['stat']['name'];
+            return statObj;
+          });
+          return { ...prevPokemon, [detailId]: rawPokemon };
         });
       })
       .catch(err => console.log(err));
@@ -19,7 +26,7 @@ function App() {
   return (
     <div className={styles.App}>
       <SearchBar getPokemon={getPokemon} detailId={1} />
-      {pokemon[1] !== null && <Details pokemon={pokemon} />}
+      {pokemon[1] !== null && <Details pokemon={pokemon[1]} />}
     </div>
   );
 }
