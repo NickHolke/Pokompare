@@ -32,7 +32,7 @@ function Details({ pokemon }) {
     ],
     datasets: [
       {
-        data: [25, 30, 12, 15, 17, 18]
+        data: pokemon['stats'].map(stat => stat['base_stat'])
       }
     ]
   };
