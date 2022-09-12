@@ -1,7 +1,7 @@
 import styles from './App.module.scss';
 import React, { useState } from 'react';
 import SearchBar from '../SearchBar';
-import Details from './Details';
+import Details from '../Details';
 import axios from 'axios';
 
 function App() {
