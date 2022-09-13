@@ -1,12 +1,13 @@
 import styles from './SearchBar.module.scss';
 import { pokemon } from './pokemon-list';
 import Fuse from 'fuse.js';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 function SearchBar({ getPokemon, detailId }) {
   const [query, updateQuery] = useState('');
   const [hasFocus, updateHasFocus] = useState(false);
   const [results, updateResults] = useState([]);
+  const inputEl = useRef(null);
 
   const getResults = query => {
     const options = {
@@ -31,6 +32,9 @@ function SearchBar({ getPokemon, detailId }) {
   const keyDownHandler = (e, item) => {
     if (e.key === 'Enter') {
       requestPokemon(item);
+      if (e.target === inputEl.current) {
+        inputEl.current.blur();
+      }
     }
   };
 
@@ -53,6 +57,7 @@ function SearchBar({ getPokemon, detailId }) {
       <input
         value={query}
         onChange={changeHandler}
+        ref={inputEl}
         onKeyDown={e => {
           if (results.length) {
             keyDownHandler(e, results[0].item);
