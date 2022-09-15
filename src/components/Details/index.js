@@ -1,53 +1,16 @@
 import styles from './Details.module.scss';
-import React, { useState } from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+import React from 'react';
+import Graph from '../Graph';
 
 function Details({ pokemon }) {
-  const options = { responsive: true };
-  const data = {
-    labels: [
-      'hp',
-      'attack',
-      'defense',
-      'special-attack',
-      'special-defense',
-      'speed'
-    ],
-    datasets: [
-      {
-        data: pokemon['stats'].map(stat => stat['base_stat'])
-      }
-    ]
-  };
   return (
     <div>
       <div className={styles.topSection}>
         <div className={styles.imgContainer}>
-          <img
-            src={
-              pokemon['sprites']['other']['official-artwork']['front_default']
-            }
-          />
+          <img src={pokemon['imgUrl']} alt={pokemon['name']} />
         </div>
         <div className={styles.graphContainer}>
-          <Bar options={options} data={data} />
+          <Graph stats={pokemon['stats']} />
         </div>
       </div>
     </div>

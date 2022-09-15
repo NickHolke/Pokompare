@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import SearchBar from '../SearchBar';
 import Details from '../Details';
 import axios from 'axios';
+import formatData from '../../helpers/formatData';
 
 function App() {
   const [pokemon, updatePokemon] = useState({ 1: null, 2: null });
@@ -11,14 +12,7 @@ function App() {
       .get(url)
       .then(res => {
         updatePokemon(prevPokemon => {
-          const rawPokemon = res.data;
-          rawPokemon['imgUrl'] =
-            rawPokemon['sprites']['other']['official-artwork']['front_default'];
-          rawPokemon['stats'] = rawPokemon['stats'].map(statObj => {
-            statObj['name'] = statObj['stat']['name'];
-            return statObj;
-          });
-          return { ...prevPokemon, [detailId]: rawPokemon };
+          return { ...prevPokemon, [detailId]: formatData(res.data) };
         });
       })
       .catch(err => console.log(err));
