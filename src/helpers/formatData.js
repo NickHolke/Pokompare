@@ -3,18 +3,26 @@ export default function formatData(pokemon) {
     let value = pokemon[key];
     if (key === 'sprites') {
       key = 'imgUrl';
-      value = value['other']['official-artwork']['front_default'];
+      value = formatImgUrl(value);
     } else if (key === 'stats') {
-      value = value.reduce(
-        (acc, curr) => {
-          acc['labels'].push(curr['stat']['name']);
-          acc['values'].push(curr['base_stat']);
-          return acc;
-        },
-        { labels: [], values: [] }
-      );
+      value = formatStats(value);
     }
 
     return { ...formattedPokemon, [key]: value };
   }, {});
+}
+
+function formatStats(stats) {
+  return stats.reduce(
+    (acc, curr) => {
+      acc['labels'].push(curr['stat']['name']);
+      acc['values'].push(curr['base_stat']);
+      return acc;
+    },
+    { labels: [], values: [] }
+  );
+}
+
+function formatImgUrl(spritesObj) {
+  return spritesObj['other']['official-artwork']['front_default'];
 }

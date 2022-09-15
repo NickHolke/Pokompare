@@ -11,13 +11,16 @@ import {
 import { Bar } from 'react-chartjs-2';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Title);
 
-function Graph({ stats }) {
+function Graph({ stats, name }) {
   const options = {
     responsive: true,
     plugins: {
       title: {
         display: true,
-        text: 'Stats'
+        text: name,
+        font: {
+          size: 30
+        }
       }
     }
   };
