@@ -15,14 +15,15 @@ function Graph({ stats, name }) {
   const options = {
     responsive: true,
     plugins: {
-      title: {
-        display: true,
-        text: name,
-        font: {
-          size: 30
-        }
-      }
-    }
+      // title: {
+      //   display: true,
+      //   text: name,
+      //   font: {
+      //     size: 30
+      //   }
+      // }
+    },
+    aspectRatio: 1
   };
   const data = {
     labels: stats.labels,

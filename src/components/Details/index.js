@@ -13,6 +13,7 @@ function Details({ pokemon }) {
             src={pokemon['imgUrl']}
             alt={pokemon['name']}
           />
+          <h1>{pokemon.name}</h1>
           <TypeBadges types={pokemon['types']} />
         </div>
         <div className={styles.graphContainer}>
