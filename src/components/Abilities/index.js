@@ -8,7 +8,11 @@ function Abilities({ data }) {
       <h2>Abilities</h2>
       <div>
         {data.map(({ ability }) => (
-          <Ability name={ability['name']} url={ability['url']} />
+          <Ability
+            key={ability['name']}
+            name={ability['name']}
+            url={ability['url']}
+          />
         ))}
       </div>
     </div>
