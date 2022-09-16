@@ -2,6 +2,7 @@ import styles from './Details.module.scss';
 import React from 'react';
 import Graph from '../Graph';
 import TypeBadges from '../TypeBadges';
+import Abilities from '../Abilities';
 
 function Details({ pokemon }) {
   return (
@@ -20,6 +21,7 @@ function Details({ pokemon }) {
           <Graph stats={pokemon['stats']} name={pokemon['name']} />
         </div>
       </div>
+      <Abilities data={pokemon['abilities']} />
     </div>
   );
 }

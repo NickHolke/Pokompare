@@ -1,0 +1,17 @@
+.abilityContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 22px;
+  border-radius: 6px;
+  &:nth-child(odd) {
+    background-color: #f8f8f8;
+  }
+}
+.name {
+  font-weight: 600;
+  flex: 1;
+}
+.details {
+  flex: 1.5;
+}
