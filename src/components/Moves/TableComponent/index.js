@@ -32,7 +32,14 @@ function TableComponent({ version, moves, method, updateMove }) {
               .map(move => (
                 <MoveComponent
                   key={move.name}
-                  move={move}
+                  name={move.name}
+                  level={move.level}
+                  moveClass={move.class}
+                  type={move.type}
+                  accuracy={move.accuracy}
+                  power={move.power}
+                  pp={move.pp}
+                  url={move.url}
                   updateMove={updateMove}
                 />
               ))}

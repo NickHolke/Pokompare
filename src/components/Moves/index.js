@@ -14,11 +14,12 @@ function Moves({ movesList, movesVersions }) {
   };
 
   const updateMove = useCallback(
-    updatedMove => {
+    valuesToUpdate => {
       const oldMoves = [...moves];
       const newMovesState = oldMoves.map(move => {
-        if (move['name'] === updatedMove['name']) {
-          move = updatedMove;
+        if (move['name'] === valuesToUpdate['name']) {
+          move = { ...move, ...valuesToUpdate };
+          console.log(move);
         }
         return move;
       });

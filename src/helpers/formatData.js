@@ -33,7 +33,14 @@ function formatMoves(movesArray) {
   const movesVersions = {};
   const movesList = movesArray.map(
     ({ move, version_group_details: versions }) => {
-      const moveObj = { ...move };
+      const moveObj = {
+        ...move,
+        accuracy: null,
+        class: null,
+        type: null,
+        power: null,
+        pp: null
+      };
       versions.forEach(version => {
         const versionName = version['version_group']['name'];
         if (!moveObj.hasOwnProperty('method')) {

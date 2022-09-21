@@ -3,38 +3,62 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import axios from 'axios';
 
-function MoveComponent({ move, updateMove }) {
-  console.log('move component');
-  useEffect(() => {
-    if (!move.hasOwnProperty('accuracy')) {
-      axios
-        .get(move['url'])
-        .then(({ data }) => {
-          const updatedMove = move;
-          updatedMove['accuracy'] = data['accuracy'];
-          updatedMove['class'] = data['damage_class']['name'];
-          updatedMove['type'] = data['type']['name'];
-          updatedMove['power'] = data['power'];
-          updatedMove['pp'] = data['pp'];
-          updateMove(updatedMove);
-        })
-        .catch(err => console.log(err));
-    }
-  }, [move, updateMove]);
+function MoveComponent({
+  name,
+  level,
+  moveClass,
+  type,
+  accuracy,
+  power,
+  pp,
+  url,
+  updateMove
+}) {
+  // useEffect(() => {
+  //   if (pp === null) {
+  //     axios
+  //       .get(url)
+  //       .then(({ data }) => {
+  //         const valuesToUpdate = { name };
+  //         valuesToUpdate['accuracy'] = data['accuracy'];
+  //         valuesToUpdate['class'] = data['damage_class']['name'];
+  //         valuesToUpdate['type'] = data['type']['name'];
+  //         valuesToUpdate['power'] = data['power'];
+  //         valuesToUpdate['pp'] = data['pp'];
+  //         updateMove(valuesToUpdate);
+  //       })
+  //       .catch(err => console.log(err));
+  //   }
+  // }, []);
+
+  if (pp === null) {
+    axios
+      .get(url)
+      .then(({ data }) => {
+        const valuesToUpdate = { name };
+        valuesToUpdate['accuracy'] = data['accuracy'];
+        valuesToUpdate['class'] = data['damage_class']['name'];
+        valuesToUpdate['type'] = data['type']['name'];
+        valuesToUpdate['power'] = data['power'];
+        valuesToUpdate['pp'] = data['pp'];
+        updateMove(valuesToUpdate);
+      })
+      .catch(err => console.log(err));
+  }
   return (
     <TableRow
-      key={move.name}
+      key={name}
       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
     >
       <TableCell component="th" scope="row">
-        {move.name}
+        {name}
       </TableCell>
-      <TableCell align="right">{move.level}</TableCell>
-      <TableCell align="right">{move.class}</TableCell>
-      <TableCell align="right">{move.type}</TableCell>
-      <TableCell align="right">{move.accuracy}</TableCell>
-      <TableCell align="right">{move.power}</TableCell>
-      <TableCell align="right">{move.pp}</TableCell>
+      <TableCell align="right">{level}</TableCell>
+      <TableCell align="right">{moveClass}</TableCell>
+      <TableCell align="right">{type}</TableCell>
+      <TableCell align="right">{accuracy}</TableCell>
+      <TableCell align="right">{power}</TableCell>
+      <TableCell align="right">{pp}</TableCell>
     </TableRow>
   );
 }
