@@ -3,6 +3,7 @@ import React from 'react';
 import Graph from '../Graph';
 import TypeBadges from '../TypeBadges';
 import Abilities from '../Abilities';
+import Moves from '../Moves';
 
 function Details({ pokemon }) {
   return (
@@ -22,6 +23,10 @@ function Details({ pokemon }) {
         </div>
       </div>
       <Abilities data={pokemon['abilities']} />
+      <Moves
+        movesList={pokemon['moves']['movesList']}
+        movesVersions={pokemon['moves']['movesVersions']}
+      />
     </div>
   );
 }
