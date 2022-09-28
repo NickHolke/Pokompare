@@ -14,37 +14,24 @@ function MoveComponent({
   url,
   updateMove
 }) {
-  // useEffect(() => {
-  //   if (pp === null) {
-  //     axios
-  //       .get(url)
-  //       .then(({ data }) => {
-  //         const valuesToUpdate = { name };
-  //         valuesToUpdate['accuracy'] = data['accuracy'];
-  //         valuesToUpdate['class'] = data['damage_class']['name'];
-  //         valuesToUpdate['type'] = data['type']['name'];
-  //         valuesToUpdate['power'] = data['power'];
-  //         valuesToUpdate['pp'] = data['pp'];
-  //         updateMove(valuesToUpdate);
-  //       })
-  //       .catch(err => console.log(err));
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (pp === null) {
+      console.log('running api call for', name);
+      axios
+        .get(url)
+        .then(({ data }) => {
+          const valuesToUpdate = { name };
+          valuesToUpdate['accuracy'] = data['accuracy'];
+          valuesToUpdate['class'] = data['damage_class']['name'];
+          valuesToUpdate['type'] = data['type']['name'];
+          valuesToUpdate['power'] = data['power'];
+          valuesToUpdate['pp'] = data['pp'];
+          updateMove(valuesToUpdate);
+        })
+        .catch(err => console.log(err));
+    }
+  }, [name, pp, url, updateMove]);
 
-  if (pp === null) {
-    axios
-      .get(url)
-      .then(({ data }) => {
-        const valuesToUpdate = { name };
-        valuesToUpdate['accuracy'] = data['accuracy'];
-        valuesToUpdate['class'] = data['damage_class']['name'];
-        valuesToUpdate['type'] = data['type']['name'];
-        valuesToUpdate['power'] = data['power'];
-        valuesToUpdate['pp'] = data['pp'];
-        updateMove(valuesToUpdate);
-      })
-      .catch(err => console.log(err));
-  }
   return (
     <TableRow
       key={name}

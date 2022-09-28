@@ -9,7 +9,6 @@ import Paper from '@mui/material/Paper';
 import MoveComponent from './MoveComponent';
 
 function TableComponent({ version, moves, method, updateMove }) {
-  console.log('table component');
   return (
     <div>
       <h2>{method}</h2>

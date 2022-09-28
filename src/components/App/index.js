@@ -1,5 +1,5 @@
 import styles from './App.module.scss';
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import SearchBar from '../SearchBar';
 import Details from '../Details';
 import axios from 'axios';
@@ -7,7 +7,7 @@ import formatData from '../../helpers/formatData';
 
 function App() {
   const [pokemon, updatePokemon] = useState({ 1: null, 2: null });
-  const getPokemon = (url, detailId) => {
+  const getPokemon = useCallback((url, detailId) => {
     axios
       .get(url)
       .then(res => {
@@ -16,7 +16,8 @@ function App() {
         });
       })
       .catch(err => console.log(err));
-  };
+  }, []);
+
   return (
     <div className={styles.App}>
       <SearchBar getPokemon={getPokemon} detailId={1} />

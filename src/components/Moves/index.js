@@ -13,20 +13,16 @@ function Moves({ movesList, movesVersions }) {
     setVersion(e.target.value);
   };
 
-  const updateMove = useCallback(
-    valuesToUpdate => {
-      const oldMoves = [...moves];
-      const newMovesState = oldMoves.map(move => {
+  const updateMove = useCallback(valuesToUpdate => {
+    setMoves(oldMoves => {
+      return oldMoves.map(move => {
         if (move['name'] === valuesToUpdate['name']) {
           move = { ...move, ...valuesToUpdate };
-          console.log(move);
         }
         return move;
       });
-      setMoves(newMovesState);
-    },
-    [moves]
-  );
+    });
+  }, []);
 
   return (
     <div>
