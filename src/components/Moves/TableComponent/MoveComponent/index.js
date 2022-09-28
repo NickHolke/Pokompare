@@ -16,7 +16,6 @@ function MoveComponent({
 }) {
   useEffect(() => {
     if (pp === null) {
-      console.log('running api call for', name);
       axios
         .get(url)
         .then(({ data }) => {
