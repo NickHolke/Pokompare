@@ -11,7 +11,6 @@ const useFetch = url => {
       try {
         const res = await fetch(url);
         const data = await res.json();
-
         setApiData(data);
         setIsLoading(false);
       } catch (error) {
